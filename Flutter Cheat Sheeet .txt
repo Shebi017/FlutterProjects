@@ -1,0 +1,419 @@
+Statless widget  =  stl
+
+not return directly Container widget
+
+
+Return App Like Materail App
+
+ 1)Data Types in Dart( int ,double, string , bool , var , num(both int and double) used when not exact now , const ,final)
+***********************************************************************************************************************
+
+    int a = 30;
+    String name = "Ahmed";
+    num temp = 30.3; also store 30 both int and double
+    bool isMale = true;
+    const pi = 3.14;
+    var Koeeb = ;
+
+2) Manage Your Code by creating new files in lib and .dart extensions
+
+
+3) Scaffold Widget 
+
+	appBar , body , drawer
+
+4) Functions or Methods (	parameters i.e required (Also , @required  is used )and optional { named parameter , default parameter }	)
+
+
+5) Build is a function . Jis ko hum overide kar rahe ha.. means pahle se bna ha es ma changes kar rahe ha
+
+	build ma jo context ka parameter ha woh yeh btata ha ka fala widget tree  ma kis jagah par ha..
+
+
+	***Theme ***
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: HomePage(),
+      themeMode: ThemeMode.dark,
+      //theme: ThemeData(primarySwatch: Colors.green),
+      darkTheme: ThemeData(brightness: Brightness.dark),
+    );
+  }
+}
+
+
+
+	******************************************** Routes ********************************
+
+	Route means Rastan .. Konsa page aap kholna chate hooo. Same like urls dispatching in django... I think
+
+	intail route : means kaha se start ho ga... khud se spicefy kar skte ha by default "/" yeh hota ha..
+
+
+	********Map is like a dictionary in python ...  		key : value , name : "Shahzaib" *****
+
+	Syntax:		
+
+ routes: {
+        "/": (context) => HomePage(),
+        "/login": (context) => LoginPage(),
+      },
+
+
+Classes Name are written in PascalCase  i.e HomePage,
+Function Name are written in camelCase i.e myFunction(){}
+
+Classes And Objects : 
+
+class PersonData{
+
+	// properties
+	// behavior
+}
+
+new PersonData() // object create . new keyword is optional...
+
+
+****************************************** 		How to Add Images 		********************************************
+
+resourse : unDraw website for images...
+
+
+	first of all go to pubspec file.. and un comment assets..
+	
+
+	assets:
+    	-assets/images/
+
+
+	and 
+
+		use this widget 	Image.asset("assets/images/login.png")
+
+
+
+
+
+****************************************** 		How to Add External Plugin	********************************************
+
+	Go to pub.dev.com
+
+	add plugin version etc in dependencis and restrat it may be....
+	
+
+	  fontFamily: GoogleFonts.lato().fontFamily,
+		
+
+ 	theme: ThemeData(
+          		fontFamily: GoogleFonts.lato(fontStyle: FontStyle.italic).fontFamily,
+        	),
+
+	**************************************** Widget $*******************************************
+
+	sizedbox, TextFormField , 
+
+
+
+
+	***********************         Day 1 :     LOGIN PAGE  *********************
+
+
+import 'package:flutter/material.dart';
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+        color: Colors.white,
+        child: Column(
+          children: [
+            SizedBox(
+              height: 20,
+            ),
+            Image.asset(
+              "assets/images/login.png",
+              fit: BoxFit.cover,
+            ),
+            // for spacing we use boxsize widget
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              "Wellcome",
+              style: TextStyle(
+                  color: Colors.green,
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold),
+            ),
+
+            SizedBox(
+              height: 20,
+            ),
+
+            Padding(
+              // padding: const EdgeInsets.all(18.0),
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 45),
+              child: Column(
+                children: [
+                  TextFormField(
+                    decoration: InputDecoration(
+                      hintText: "Enter Username",
+                      labelText: "Username",
+                    ),
+                  ),
+                  TextFormField(
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      hintText: "Enter Password",
+                      labelText: "Password",
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                      child: Text("Login"),
+                      style: ButtonStyle(),
+                      onPressed: () {
+                        print("HI Sheib!!!");
+                      })
+                ],
+              ),
+            ),
+          ],
+        ));
+  }
+}
+//////////////////////// Button ///////////////////////////
+
+ElevatedButton(
+                      style: TextButton.styleFrom(minimumSize: Size(120, 40)),
+                      onPressed: () {
+                        print("Hi Shebi");
+                      },
+                      child: Text("Login"))
+######   Also Removing debug banner
+
+		debugShowCheckedModeBanner: false,
+********************************************************  DAY 2 **********************************************************************************************************
+Create Utils folder 
+	then create a file name like routes.dart
+		then create a class name like MyRouter
+			then create static attributes like static  String loginRoute = "/login";
+
+
+onPressed: () {
+                        Navigator.pushNamed(context, MyRoutes.homeRoute);
+                      },
+
+Widget # SingleChildScrollView,Navigator
+
+
+
+
+*******************************************************  DAY 3 ***********************************************************************************
+
+
+stateful widgets : Aase widget jin ki state change ho sakte ha.. Jaise he ma button par click karo to osi page ma change a jaye....
+
+es ma 2 classes hote ha 	
+
+	_ underscore means private access specifier
+
+	setstate method is used to recal build funciton..
+
+	container,boxdecoration,inkwell is used for clickable event,animated container,await,sync
+
+
+
+
+******************************************************** Day 4 *******************************************************************************
+
+Repal affact on Inkwell widjet : Back par a rha ha....  front par nhi aa rha.
+
+Method 1 : Container ke jagah Ink widget Use kar le
+
+Ink widget is same like a Container some differeces.. Ink decoration wise zaida ache effect de sakta ha..
+
+splashcolor,
+
+Method 2 : Inkwell ko Ancesstor Materail dena ho...
+
+
+###########################		Validation  TextFormFeild	 ##############################
+
+TextFormFeild Advantages ha over TextFeild like validation...
+
+1 ) Jo b text form field ha en ko wrap karna ha Form Widget ka undar..
+2)Form ko key dene pare gye....  Ta ka es ka sath operation kar sake es ko kahe use kar sake...
+
+  final formkey = GlobalKey<FormState>();
+....
+
+
+############################             Day 5 #########################################
+
+1) Dev Tools
+2)Drawer widget, drawer header,UserAccountDrawerHeader,currnetaccountPicture : CircleAvatar() or image.Network()
+
+
+
+
+###########################  Day 7 #########################################
+
+
+1) Tab Bar
+2)Drawer
+
+
+
+
+########################## Day 9 ###################################
+
+List View , List View Builder,List Genrator,Cards.....,Models
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##############################   	API USAGE GENDER DETECTOR APP    #################################
+
+
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+class GenderDetectorApp extends StatefulWidget {
+  const GenderDetectorApp({Key? key}) : super(key: key);
+
+  @override
+  _GenderDetectorAppState createState() => _GenderDetectorAppState();
+}
+
+class _GenderDetectorAppState extends State<GenderDetectorApp> {
+  String myResult = "Not Now abhi";
+  String username = "";
+  genderDetector(String username) async {
+    var url =
+        "https://gender-api.com/get?name=$username&key=ZAxUXS6ZKDPvGhrSA9MRZvjArNQTf7GB2SPT";
+
+    var res = await http.get(Uri.parse(url));
+
+    var body = json.decode(res.body);
+
+    myResult = "$username is  ${body['gender']}";
+
+    setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // backgroundColor: Colors.pink,
+      appBar: AppBar(
+        elevation: 0.0,
+        centerTitle: true,
+        title: Text("Gender Detector App"),
+      ),
+      body: Container(
+        alignment: Alignment.center,
+        padding: EdgeInsets.all(8),
+        child: Column(
+          // crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              "Enter your name to check gender",
+              style: TextStyle(fontSize: 25),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(14.0),
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: "Enter your name",
+                  border: OutlineInputBorder(
+                      gapPadding: 6, borderRadius: BorderRadius.circular(10)),
+                ),
+                onChanged: (value) {
+                  username = value;
+                },
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                print(username);
+                genderDetector(username);
+              },
+              child: Text("Check It"),
+              style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(Colors.orange),
+              ),
+            ),
+            Text(
+              "Result : $myResult ",
+              style: TextStyle(fontSize: 20),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+////////////////////////////////// Countary Detail API LINK //////////////////////////////////////
+
+
+https://restcountries.eu/rest/v2/name/Pakistan
+
+
+
+
+#############################       VERY IMPORTANT TOPIC #######################################
+
+
+Q : How to find Physcial Device Width 
+
+	step-1 : Import Library
+		import 'dart:ui';
+
+	step-2 :
+		double screenWidth=window.physicalSize.width;
+
+
+Point -2
+
+	final size = MediaQuery.of(context).size;
+	width=size.width,
+	height=size.height
+
+
+Point -3 
+
+	final ThemeData themeData =Theme.of(context);
+
+	style: themeData.textTheme.headline1;
+
+Point-4
+
+Widgets :	gridview.builder 
+
+
+
+
